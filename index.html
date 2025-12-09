@@ -8,10 +8,9 @@
     <title>Travel Helper</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-</head>
-
-    <link rel="icon" type="images/favicon" href="images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="shortcut icon" href="images/favicon.ico">
+</head>
 
 
 <body>
@@ -64,9 +63,21 @@
 
             <!-- INFORMATION SECTION -->
             <section class="info-section">
-                <h2>Information</h2>
-                <p id="infoText">Select a country to load information...</p>
+                <h2>Country Information</h2>
+            
+                <select id="countrySelect">
+                    <option value="">Select a country</option>
+                    <option value="France">France</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Germany">Germany</option>
+                </select>
+            
+                <div id="countryInfo">
+                    <p>Select a country to load information...</p>
+                </div>
             </section>
+
 
         </div>
 
@@ -81,11 +92,13 @@
             <!-- CHECKLIST -->
             <section class="checklist">
                 <h2>Packing Checklist</h2>
-                <ul id="packingList">
-                    <li><input type="checkbox"> Passport</li>
-                    <li><input type="checkbox"> Charger</li>
-                    <li><input type="checkbox"> Clothes</li>
-                </ul>
+                
+                <ul id="packingList"></ul>
+                
+                <div class="add-item">
+                    <input type="text" id="newItemInput" placeholder="Add new item">
+                    <button id="addItemBtn">Add</button>
+                </div>
 
                 <!-- DESKTOP BUTTONS -->
                 <div class="desktop-buttons">
