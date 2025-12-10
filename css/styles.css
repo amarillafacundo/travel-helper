@@ -102,8 +102,13 @@ section {
     padding: 1.2rem;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
 
 /* ================================
    IMAGE PLACEHOLDER
@@ -139,6 +144,19 @@ section {
     padding: .8rem;
     border: 1px solid #ccc;
     border-radius: 6px;
+    transition: border-color 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 2px rgba(112, 160, 175, 0.3);
+}
+
+.input-box input:focus {
+    border-color: var(--blue);
+    outline: none;
 }
 
 .input-box button {
@@ -179,6 +197,16 @@ section {
     padding: 0.5rem;
 }
 
+#packingList li {
+    transition: color 0.3s ease;
+}
+
+#packingList input[type="checkbox"] {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
 
 /* ================================
    BUTTONS GENERAL
@@ -190,10 +218,16 @@ button {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    /* animation */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 button:hover {
-    opacity: .9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+button:active {
+    transform: scale(0.97);
 }
 
 
@@ -232,6 +266,33 @@ button:hover {
     width: 200px;
 }
 
+/* ================================
+ANIMATIONS
+================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#savedTripsSection {
+    animation: fadeInUp 0.4s ease;
+}
+
+#savedTripsSection p {
+    margin-bottom: 0.3rem;
+}
+
+#savedTripsSection div {
+    padding: 0.8rem 0;
+    animation: fadeInUp 0.3s ease forwards;
+}
 
 /* ================================
    DESKTOP (>=768px)

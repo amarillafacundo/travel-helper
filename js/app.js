@@ -4,18 +4,6 @@ const fromInput = document.getElementById("fromValue");
 const toInput = document.getElementById("toValue");
 const convertBtn = document.getElementById("convertBtn");
 
-// MOBILE BUTTONS
-document.getElementById("savedTripsBtnMobile").addEventListener("click", () => {
-    alert("Saved Trips coming in Week 6!");
-});
-document.getElementById("saveTripBtnMobile").addEventListener("click", () => {
-    alert("Save Trip coming in Week 6!");
-});
-
-// DESKTOP BUTTON
-document.getElementById("savedTripsBtn").addEventListener("click", () => {
-    alert("Saved Trips coming in Week 6!");
-});
 
 convertBtn.addEventListener("click", async () => {
     const amount = parseFloat(fromInput.value);
@@ -150,3 +138,76 @@ if (savedCountry) {
     countrySelect.value = savedCountry;
     countrySelect.dispatchEvent(new Event("change"));
 }
+
+
+// =============================
+// SAVED TRIPS - WEEK 7 (DESKTOP + MOBILE)
+// =============================
+
+function saveTrip() {
+    const selectedCountry = localStorage.getItem("selectedCountry");
+    const checklist = JSON.parse(localStorage.getItem("packingChecklist")) || [];
+
+    if (!selectedCountry) {
+        alert("Please select a country before saving the trip.");
+        return;
+    }
+
+    const newTrip = {
+        country: selectedCountry,
+        checklist: checklist,
+        date: new Date().toLocaleDateString()
+    };
+
+    const savedTrips = JSON.parse(localStorage.getItem("savedTrips")) || [];
+    savedTrips.push(newTrip);
+
+    localStorage.setItem("savedTrips", JSON.stringify(savedTrips));
+
+    alert("Trip saved successfully!");
+}
+
+// Desktop button
+document.getElementById("saveTripBtn")
+    .addEventListener("click", saveTrip);
+
+// Mobile button
+document.getElementById("saveTripBtnMobile")
+    .addEventListener("click", saveTrip);
+
+// ============================
+// VIEW SAVED TRIPS
+// ============================
+
+const savedTripsBtn = document.getElementById("savedTripsBtn");
+const savedTripsBtnMobile = document.getElementById("savedTripsBtnMobile");
+const savedTripsSection = document.getElementById("savedTripsSection");
+const savedTripsList = document.getElementById("savedTripsList");
+
+function showSavedTrips() {
+    const trips = JSON.parse(localStorage.getItem("savedTrips")) || [];
+    savedTripsList.innerHTML = "";
+
+    if (trips.length === 0) {
+        savedTripsList.innerHTML = "<p>No saved trips yet.</p>";
+    }
+
+    trips.forEach((trip, index) => {
+        const div = document.createElement("div");
+        div.innerHTML = `
+            <p><strong>Country:</strong> ${trip.country}</p>
+            <p><strong>Date:</strong> ${trip.date}</p>
+            <hr>
+        `;
+        savedTripsList.appendChild(div);
+    });
+
+    savedTripsSection.style.display = "block";
+}
+
+// Desktop
+savedTripsBtn.addEventListener("click", showSavedTrips);
+
+// Mobile
+savedTripsBtnMobile.addEventListener("click", showSavedTrips);
+
